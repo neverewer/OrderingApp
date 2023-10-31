@@ -13,8 +13,7 @@ class DatePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var date = context.watch<OrderingViewModel>().orderingDate;
-
+    final date = context.watch<OrderingViewModel>().orderingDate;
     return DatePickerBox(
       child: DatePickerContent(
         date: date,

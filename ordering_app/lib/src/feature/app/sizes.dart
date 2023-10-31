@@ -9,6 +9,8 @@ class AppSizes {
   static const double selecteAddressTabInputHeight = 37;
   static const double nextStepButtonHeight = 52;
   static const double selectedAddressBoxIconsSize = 20;
+  static const double selecteAddresBoxHeight = 80;
+  static const double searchInputItemHeight = 60;
 
   static const EdgeInsets orderingPageContentPadding = EdgeInsets.symmetric(horizontal: 20);
   static const EdgeInsets datePickerPadding = EdgeInsets.all(12);
