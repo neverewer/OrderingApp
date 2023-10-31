@@ -16,5 +16,5 @@ class AppSizes {
 
   static const BorderRadius inputBorderRadius = BorderRadius.all(Radius.circular(8));
   static const BorderRadius tabBarSelectedLabelBorderRadius = BorderRadius.all(Radius.circular(36));
-  static const BorderRadius nextButtonBorderRadius = BorderRadius.all(Radius.circular(50));
+  static const BorderRadius nextStepButtonBorderRadius = BorderRadius.all(Radius.circular(50));
 }

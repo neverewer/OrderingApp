@@ -3,7 +3,12 @@ import 'package:ordering_app/src/feature/app/colors.dart';
 import 'package:ordering_app/src/feature/app/sizes.dart';
 
 class NextStepButton extends StatelessWidget {
-  const NextStepButton({super.key});
+  final Function()? onPressed;
+
+  const NextStepButton({
+    super.key,
+    this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -11,12 +16,12 @@ class NextStepButton extends StatelessWidget {
       width: double.infinity,
       height: AppSizes.nextStepButtonHeight,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(AppColors.activeElementsColor),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             const RoundedRectangleBorder(
-              borderRadius: AppSizes.nextButtonBorderRadius,
+              borderRadius: AppSizes.nextStepButtonBorderRadius,
             ),
           ),
         ),

@@ -6,12 +6,14 @@ class BaseInput extends StatelessWidget {
   final double height;
   final String hintText;
   final IconData prefixIcon;
+  final TextEditingController? controller;
 
   const BaseInput({
     super.key,
     required this.hintText,
     required this.prefixIcon,
     required this.height,
+    this.controller,
   });
 
   @override
@@ -19,6 +21,7 @@ class BaseInput extends StatelessWidget {
     return SizedBox(
       height: height,
       child: TextField(
+        controller: controller,
         textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(
           border: const OutlineInputBorder(

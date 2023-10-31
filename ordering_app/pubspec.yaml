@@ -8,6 +8,11 @@ environment:
 
 dependencies:
   autoscale_tabbarview: ^1.0.2
+  provider: ^6.0.5
+  intl: ^0.18.1
+  timezone: ^0.9.2
+  meta: any
+  searchfield: ^0.8.7
   flutter:
     sdk: flutter
 
@@ -18,3 +23,87 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto/Roboto-Black.ttf
+          weight: 900
+        - asset: assets/fonts/Roboto/Roboto-BlackItalic.ttf
+          weight: 900
+          style: italic
+        - asset: assets/fonts/Roboto/Roboto-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Roboto/Roboto-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/Roboto/Roboto-Italic.ttf
+          style: italic
+        - asset: assets/fonts/Roboto/Roboto-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Roboto/Roboto-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/Roboto/Roboto-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Roboto/Roboto-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/Roboto/Roboto-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Roboto/Roboto-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/Roboto/Roboto-ThinItalic.ttf
+          weight: 100
+          style: italic
+    - family: SF-Pro-Text
+      fonts:
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Black.otf
+          weight: 900
+        - asset: assets/fonts/SFPro/SF-Pro-Text-BlackItalic.otf
+          weight: 900
+          style: italic
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Bold.otf
+          weight: 700
+        - asset: assets/fonts/SFPro/SF-Pro-Text-BoldItalic.otf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Heavy.otf
+          weight: 800
+        - asset: assets/fonts/SFPro/SF-Pro-Text-HeavyItalic.otf
+          weight: 800
+          style: italic
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Light.otf
+          weight: 300
+        - asset: assets/fonts/SFPro/SF-Pro-Text-LightItalic.otf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Medium.otf
+          weight: 500
+        - asset: assets/fonts/SFPro/SF-Pro-Text-MediumItalic.otf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Regular.otf
+          weight: 400
+        - asset: assets/fonts/SFPro/SF-Pro-Text-RegularItalic.otf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Semibold.otf
+          weight: 600
+        - asset: assets/fonts/SFPro/SF-Pro-Text-SemiBoldItalic.otf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Thin.otf
+          weight: 200
+        - asset: assets/fonts/SFPro/SF-Pro-Text-ThinItalic.otf
+          weight: 200
+          style: italic
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Ultralight.otf
+          weight: 100
+        - asset: assets/fonts/SFPro/SF-Pro-Text-UltralightItalic.otf
+          weight: 100
+          style: italic
+          
+
+

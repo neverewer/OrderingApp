@@ -5,7 +5,39 @@ import 'package:ordering_app/src/feature/app/sizes.dart';
 import 'package:ordering_app/src/feature/pages/ordering_page/widgets/base_input.dart';
 
 class AddAddressTab extends StatelessWidget {
-  const AddAddressTab({super.key});
+  final TextEditingController? nameController;
+  final TextEditingController? emailController;
+  final TextEditingController? phoneController;
+  final TextEditingController? countryController;
+  final TextEditingController? cityController;
+  final TextEditingController? addressLineController;
+  final TextEditingController? postcodeController;
+
+  final String nameInputHintText;
+  final String emailInputHintText;
+  final String phoneInputHintText;
+  final String countryInputHintText;
+  final String cityInputHintText;
+  final String addressLineInputHintText;
+  final String postcodeInputHintText;
+
+  const AddAddressTab({
+    super.key,
+    this.nameController,
+    this.emailController,
+    this.phoneController,
+    this.countryController,
+    this.cityController,
+    this.addressLineController,
+    this.postcodeController,
+    required this.nameInputHintText,
+    required this.emailInputHintText,
+    required this.phoneInputHintText,
+    required this.countryInputHintText,
+    required this.cityInputHintText,
+    required this.addressLineInputHintText,
+    required this.postcodeInputHintText,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,46 +45,53 @@ class AddAddressTab extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         InputWithTitle(
+          controller: nameController,
           title: 'Full name',
-          hintText: 'Daniel Egor',
+          hintText: nameInputHintText,
           prefixIcon: AppIcons.user.icon,
         ),
         const SizedBox(height: 12),
         InputWithTitle(
+          controller: emailController,
           title: 'Email',
-          hintText: 'egor_zu@email.com',
+          hintText: emailInputHintText,
           prefixIcon: AppIcons.mail.icon,
         ),
         const SizedBox(height: 12),
         InputWithTitle(
+          controller: phoneController,
           title: 'Phone number',
-          hintText: '+375726014690',
+          hintText: phoneInputHintText,
           prefixIcon: AppIcons.phone.icon,
         ),
         const SizedBox(height: 16),
         InputWithTitle(
+          controller: countryController,
           title: 'Country',
-          hintText: 'Belarus',
+          hintText: countryInputHintText,
           prefixIcon: AppIcons.location.icon,
         ),
         const SizedBox(height: 12),
         InputWithTitle(
+          controller: cityController,
           title: 'City',
-          hintText: 'Minsk',
+          hintText: cityInputHintText,
           prefixIcon: AppIcons.city.icon,
         ),
         const SizedBox(height: 12),
         InputWithTitle(
+          controller: addressLineController,
           title: 'Address line 1',
-          hintText: 'Derzhinskogo 3b',
+          hintText: addressLineInputHintText,
           prefixIcon: AppIcons.pin.icon,
         ),
         const SizedBox(height: 12),
         const AddAddresLineButton(),
         const SizedBox(height: 12),
         InputWithTitle(
-          title: 'Postcode',
-          hintText: '220069',
+          controller: postcodeController,
+          title: postcodeInputHintText,
+          hintText: 'Postcode',
           prefixIcon: AppIcons.post.icon,
         ),
       ],
@@ -64,12 +103,14 @@ class InputWithTitle extends StatelessWidget {
   final String title;
   final String hintText;
   final IconData prefixIcon;
+  final TextEditingController? controller;
 
   const InputWithTitle({
     super.key,
     required this.title,
     required this.hintText,
     required this.prefixIcon,
+    this.controller,
   });
 
   @override
@@ -89,6 +130,7 @@ class InputWithTitle extends StatelessWidget {
           height: 8,
         ),
         BaseInput(
+          controller: controller,
           hintText: hintText,
           prefixIcon: prefixIcon,
           height: AppSizes.addAddressTabInputHeight,
