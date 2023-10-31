@@ -3,17 +3,17 @@ import 'package:ordering_app/src/core/models/user.dart';
 import 'package:ordering_app/src/feature/app/colors.dart';
 import 'package:ordering_app/src/feature/app/icons.dart';
 import 'package:ordering_app/src/feature/app/sizes.dart';
+import 'package:ordering_app/src/feature/pages/ordering_page/ordering_view_model.dart';
+import 'package:provider/provider.dart';
 import 'package:searchfield/searchfield.dart';
 
 class SelectAddressTab extends StatelessWidget {
-  final TextEditingController? searchController;
   final User? user;
   final List<User> suggestions;
   final void Function(User) onSuggestionTap;
 
   const SelectAddressTab({
     super.key,
-    this.searchController,
     required this.user,
     required this.suggestions,
     required this.onSuggestionTap,
@@ -27,9 +27,7 @@ class SelectAddressTab extends StatelessWidget {
           suggestions: suggestions,
           onSuggestionTap: onSuggestionTap,
         ),
-        const SizedBox(
-          height: 12,
-        ),
+        const SizedBox(height: 12),
         user != null ? SelectedAddressBox(user: user!) : const SizedBox(),
       ],
     );
@@ -47,16 +45,17 @@ class SelectedAddressBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 80,
+      height: AppSizes.selecteAddresBoxHeight,
       width: double.infinity,
       child: DecoratedBox(
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(12)),
-            color: AppColors.selectedAddresBoxBackgroundColor,
-          ),
-          child: SelectedAddressBoxContent(
-            user: user,
-          )),
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(12)),
+          color: AppColors.selectedAddresBoxBackgroundColor,
+        ),
+        child: SelectedAddressBoxContent(
+          user: user,
+        ),
+      ),
     );
   }
 }
@@ -88,9 +87,7 @@ class SelectedAddressBoxContent extends StatelessWidget {
                     color: AppColors.selectedAddresBoxPersonLabelColor,
                   ),
                 ),
-                const SizedBox(
-                  height: 6,
-                ),
+                const SizedBox(height: 6),
                 Text(
                   user.getFullAddress(),
                   style: const TextStyle(
@@ -133,7 +130,7 @@ class _SearchInputState extends State<SearchInput> {
   @override
   Widget build(BuildContext context) {
     return SearchField<User>(
-        itemHeight: 60,
+        itemHeight: AppSizes.searchInputItemHeight,
         focusNode: focus,
         searchInputDecoration: InputDecoration(
           border: const OutlineInputBorder(

@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:ordering_app/src/feature/app/colors.dart';
 
-class StepDisplay extends StatelessWidget {
-  const StepDisplay({super.key});
+class StepDisplayTitle extends StatelessWidget {
+  final int step;
+
+  const StepDisplayTitle({
+    super.key,
+    required this.step,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return const Text(
-      'Step 1',
+    return Text(
+      'Step ${step.toString()}',
       textAlign: TextAlign.center,
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w400,
         fontFamily: 'SF-Pro-Text',

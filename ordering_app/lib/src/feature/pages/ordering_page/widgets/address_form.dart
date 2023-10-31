@@ -57,9 +57,7 @@ class AddressForm extends StatelessWidget {
       children: [
         FormTitle(title: title),
         const SizedBox(height: 16),
-        AddressFormTabBar(
-          tabController: tabController,
-        ),
+        AddressFormTabBar(tabController: tabController),
         const SizedBox(height: 20),
         AutoScaleTabBarView(
           physics: const NeverScrollableScrollPhysics(),

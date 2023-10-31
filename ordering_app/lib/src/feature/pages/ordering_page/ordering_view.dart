@@ -4,6 +4,7 @@ import 'package:ordering_app/src/feature/app/sizes.dart';
 import 'package:ordering_app/src/feature/pages/ordering_page/ordering_view_model.dart';
 import 'package:ordering_app/src/feature/pages/ordering_page/widgets/address_form.dart';
 import 'package:ordering_app/src/feature/pages/ordering_page/widgets/date_picker.dart';
+import 'package:ordering_app/src/feature/pages/ordering_page/widgets/date_picker_title.dart';
 import 'package:ordering_app/src/feature/pages/ordering_page/widgets/next_step_button.dart';
 import 'package:ordering_app/src/feature/pages/ordering_page/widgets/step_display.dart';
 import 'package:provider/provider.dart';
@@ -76,6 +77,56 @@ class _OrderingViewState extends State<OrderingView> with TickerProviderStateMix
     _senderTabController.dispose();
   }
 
+  void onNextStepButtonPressed(BuildContext context) {
+    //viewing the selected tab to understand who to take to create an order
+    //I know it’s not the best way, but there wasn’t much time to think through everything
+    if (_recipientTabController.index == 0 && _senderTabController.index == 0) {
+      final sender = User(
+        fullName: senderNameController.text,
+        email: senderEmailController.text,
+        phoneNumber: senderPhoneController.text,
+        country: senderCountryController.text,
+        city: senderCityController.text,
+        address: senderAddressLineController.text,
+        postcode: senderPostcodeController.text,
+      );
+      final recipient = User(
+        fullName: recipientNameController.text,
+        email: recipientEmailController.text,
+        phoneNumber: recipientPhoneController.text,
+        country: recipientCountryController.text,
+        city: recipientCityController.text,
+        address: recipientAddressLineController.text,
+        postcode: recipientPostcodeController.text,
+      );
+      context.read<OrderingViewModel>().createOrderFromAddedData(sender, recipient);
+    } else if (_recipientTabController.index == 0 && _senderTabController.index != 0) {
+      final recipient = User(
+        fullName: recipientNameController.text,
+        email: recipientEmailController.text,
+        phoneNumber: recipientPhoneController.text,
+        country: recipientCountryController.text,
+        city: recipientCityController.text,
+        address: recipientAddressLineController.text,
+        postcode: recipientPostcodeController.text,
+      );
+      context.read<OrderingViewModel>().createOrderFromSelectedSenderAndAddedRecipient(recipient);
+    } else if (_recipientTabController.index != 0 && _senderTabController.index == 0) {
+      final sender = User(
+        fullName: senderNameController.text,
+        email: senderEmailController.text,
+        phoneNumber: senderPhoneController.text,
+        country: senderCountryController.text,
+        city: senderCityController.text,
+        address: senderAddressLineController.text,
+        postcode: senderPostcodeController.text,
+      );
+      context.read<OrderingViewModel>().createOrderFromSelectedSenderAndAddedRecipient(sender);
+    } else {
+      context.read<OrderingViewModel>().createOrderFromSelectedData();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -88,23 +139,11 @@ class _OrderingViewState extends State<OrderingView> with TickerProviderStateMix
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const StepDisplay(),
-                      const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Start date',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFF172027),
-                          ),
-                        ),
-                      ),
+                      const StepDisplayTitle(step: 1),
+                      const DatePickerTitle(),
                       const SizedBox(height: 8),
                       const DatePicker(),
-                      const SizedBox(
-                        height: 40,
-                      ),
+                      const SizedBox(height: 40),
                       SizedBox(
                           width: double.infinity,
                           child: SenderAddressForm(
@@ -117,9 +156,7 @@ class _OrderingViewState extends State<OrderingView> with TickerProviderStateMix
                             postcodeController: senderPostcodeController,
                             tabController: _senderTabController,
                           )),
-                      const SizedBox(
-                        height: 16,
-                      ),
+                      const SizedBox(height: 16),
                       Expanded(
                           child: RecipientAddressForm(
                         nameController: recipientNameController,
@@ -132,55 +169,7 @@ class _OrderingViewState extends State<OrderingView> with TickerProviderStateMix
                         tabController: _recipientTabController,
                       )),
                       const SizedBox(height: 20),
-                      NextStepButton(
-                        onPressed: () {
-                          if (_recipientTabController.index == 0 && _senderTabController.index == 0) {
-                            final sender = User(
-                              fullName: senderNameController.text,
-                              email: senderEmailController.text,
-                              phoneNumber: senderPhoneController.text,
-                              country: senderCountryController.text,
-                              city: senderCityController.text,
-                              address: senderAddressLineController.text,
-                              postcode: senderPostcodeController.text,
-                            );
-                            final recipient = User(
-                              fullName: recipientNameController.text,
-                              email: recipientEmailController.text,
-                              phoneNumber: recipientPhoneController.text,
-                              country: recipientCountryController.text,
-                              city: recipientCityController.text,
-                              address: recipientAddressLineController.text,
-                              postcode: recipientPostcodeController.text,
-                            );
-                            context.read<OrderingViewModel>().createOrderFromAddedData(sender, recipient);
-                          } else if (_recipientTabController.index == 0 && _senderTabController.index != 0) {
-                            final recipient = User(
-                              fullName: recipientNameController.text,
-                              email: recipientEmailController.text,
-                              phoneNumber: recipientPhoneController.text,
-                              country: recipientCountryController.text,
-                              city: recipientCityController.text,
-                              address: recipientAddressLineController.text,
-                              postcode: recipientPostcodeController.text,
-                            );
-                            context.read<OrderingViewModel>().createOrderFromSelectedSenderAndAddedRecipient(recipient);
-                          } else if (_recipientTabController.index != 0 && _senderTabController.index == 0) {
-                            final sender = User(
-                              fullName: senderNameController.text,
-                              email: senderEmailController.text,
-                              phoneNumber: senderPhoneController.text,
-                              country: senderCountryController.text,
-                              city: senderCityController.text,
-                              address: senderAddressLineController.text,
-                              postcode: senderPostcodeController.text,
-                            );
-                            context.read<OrderingViewModel>().createOrderFromSelectedSenderAndAddedRecipient(sender);
-                          } else {
-                            context.read<OrderingViewModel>().createOrderFromSelectedData();
-                          }
-                        },
-                      ),
+                      NextStepButton(onPressed: () => onNextStepButtonPressed(context)),
                       const SizedBox(height: 10),
                     ],
                   ),
